@@ -14,10 +14,15 @@ class UsersController < ApplicationController
 	end 
 
 	def create
-	  @user = User.create!(params[:user])
+	  @user = User.new(params[:user])
 
-	  respond_to do |format|
-	  	format.html { redirect_to user_path(@user), notice: 'User was successfully created.'}
+	  if @user.save
+	    respond_to do |format|
+	  	  format.html { redirect_to user_path(@user), notice: 'User was successfully created.'}
+        end
+      else
+    	flash[:notice] = "Invalid. Please try again."
+    	render 'new'
       end
 	end
 
