@@ -1,5 +1,6 @@
 <%= form_for(@user) do |f| %>
 
+<div class="formhold">
 <div class="field">
 	<%= f.label :name %>
 	<%= f.text_field :name %>
@@ -15,11 +16,25 @@
 <div>
 	<%= f.label :password_confirmation, "Confirm password" %>
 	<%= f.password_field :password_confirmation %>
+</div>
 <div>
-	<%= f.submit %>
+	<%= f.submit 'Submit', :class => 'submitbutton' %>
 </div>
 
 
 
+<% if @user.errors.any? %>
+	<div id="error_exp">
+		<h2><%= pluralize(@user.errors.count, "error") %> occurred.</h2>
+
+		<ul>
+		<% @user.errors.full_messages.each do |msg| %>
+			<li><%= msg %></li>
+		<% end %>
+	    </ul>
+	</div>
+
+	</div>
+<% end %>
 <% end %>
 

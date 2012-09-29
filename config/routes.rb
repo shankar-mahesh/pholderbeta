@@ -1,6 +1,13 @@
 Pholder::Application.routes.draw do
-  resources :users
-  root :to => "home#index"
+  resources :users do
+    resources :albums 
+  end
+
+  resources :albums do
+    resources :pictures
+  end
+
+  root :to => "users#index"
 
   match '/about',   to: 'home#about'
   match '/help',    to: 'home#help'

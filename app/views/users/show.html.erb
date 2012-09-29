@@ -1,3 +1,20 @@
-<p>Success!</p>
+	<% provide(:title, "Welcome, #{@user.name}!") %>
 
-<%= link_to "Back", users_path %>
+	<div>
+		You currently have <%= pluralize(@user.albums.count, "album") %>
+	</div>
+
+	<div>
+		<%= link_to "Create a new album!", new_user_album_path(@user) %>
+	</div>
+
+	<div>
+	<% if @user.albums.any? %>
+	hey
+	<% else %>
+	boo
+	<% end %>
+
+	</div>
+
+	<%= link_to "Back", users_path %>
