@@ -1,7 +1,8 @@
 class AlbumsController < ApplicationController
 
 	def index
-	  @albums = Albums.all
+	  @user = User.find(params[:user_id])
+	  @albums = @user.albums.all
 
 	  respond_to do |format|
 	  	format.html
@@ -12,6 +13,7 @@ class AlbumsController < ApplicationController
 	def show
 	  @albums = Album.all
 	  @album = Album.find(params[:id])
+	  @photo = Photo.new
 	end
 
 	def update
@@ -21,26 +23,19 @@ class AlbumsController < ApplicationController
 	end
 
 	def create
-	  @users = User.all
-	  @album = Album.new(params[:album])
-	  @album.user_id = current_user.id
-	  if @album.save
-	    flash[:success] = "Album created!"
-	    redirect_to @album
+	  @user = User.find(params[:user_id])
+	  @album = @user.albums.build(params[:album])
+	  respond_to do |format|
+		if @album.save
+		  print @album.errors
+		  format.html { redirect_to user_path(@user), notice: 'Album was successfully created.' }
+	   	  format.json { render json: @album, status: :created, location: @album}
+		else
+		  format.html { render action: "new" }
+		  format.json { render json: @album.errors, status: :unprocessable_entity }
+		end
 	  end 
 	end
-
-
-	# def create
-	#   @users = User.all
-	#   @user = User.first
-	#   # @user = User.find(params[:album][:user_id])
-	#   @album = @user.albums.build(params[:album])
-	#   if @album.save
-	#   	flash[:success] = "Album created!"
-	#   	redirect_to @album
-	#   end 
-	# end
 
 	def new
 	  @user = User.find(params[:user_id])

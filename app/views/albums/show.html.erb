@@ -1,6 +1,13 @@
-<% @albums.each do |a| %>
+
+
+<% if @album.photos.any? %>
+hey
+<% else %>
+no
+<% end %>
+
+
 <div>
-	<%= a.avatar %>
+	<%= render 'photos/form' %>
 </div>
 
-<% end %>

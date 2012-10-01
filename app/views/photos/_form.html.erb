@@ -1,0 +1,10 @@
+
+<%= form_for(@photo, :html => { :multipart => true }, :url => { :action => 'create'} ) do |f| %>
+
+<%= f.label :avatar %>
+<%= f.file_field :avatar %>
+
+<%= f.submit %>
+
+
+<% end %>

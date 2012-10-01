@@ -4,7 +4,7 @@ Pholder::Application.routes.draw do
   end
 
   resources :albums do
-    resources :pictures
+    resources :photos
   end
 
   root :to => "users#index"
