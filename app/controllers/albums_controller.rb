@@ -11,9 +11,8 @@ class AlbumsController < ApplicationController
 	end
 
 	def show
-	  @albums = Album.all
-	  @album = Album.find(params[:id])
-	  @photo = Photo.new
+	  @user = User.find(params[:user_id])
+	  @album = @user.albums.find(params[:id])
 	end
 
 	def update
@@ -26,9 +25,8 @@ class AlbumsController < ApplicationController
 	  @user = User.find(params[:user_id])
 	  @album = @user.albums.build(params[:album])
 	  respond_to do |format|
-		if @album.save
-		  print @album.errors
-		  format.html { redirect_to user_path(@user), notice: 'Album was successfully created.' }
+		if @user.save
+		  format.html { redirect_to user_album_path(@user, @album), notice: 'Album was successfully created.' }
 	   	  format.json { render json: @album, status: :created, location: @album}
 		else
 		  format.html { render action: "new" }

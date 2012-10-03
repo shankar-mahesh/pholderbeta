@@ -1,13 +1,10 @@
 
 
 <% if @album.photos.any? %>
-hey
+yes  pics
 <% else %>
-no
+no  pics
 <% end %>
 
 
-<div>
-	<%= render 'photos/form' %>
-</div>
-
+<%= link_to "Upload new pics!", new_user_album_photo_path(@user, @album) %>

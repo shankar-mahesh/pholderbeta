@@ -1,0 +1,11 @@
+<% provide(:title, "Upload pictures") %>
+
+<%= form_for([@user, @album, @photo], :html => { :multipart => true }) do |f| %>
+
+<%= f.file_field :avatar %>
+
+<%= f.submit %>
+
+<% end %>
+
+

@@ -8,8 +8,8 @@ class User < ActiveRecord::Base
   validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, :on => :create
   validates_length_of :password, :minimum => 5, :on => :create
 
-  has_many :album_user
-  has_many :albums, :through => :album_user
+  has_many :album_users
+  has_many :albums, :through => :album_users
   accepts_nested_attributes_for :albums
 
 end
