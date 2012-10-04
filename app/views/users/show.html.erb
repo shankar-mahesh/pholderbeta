@@ -1,14 +1,22 @@
 	<% provide(:title, "Welcome, #{@user.name}!") %>
 
-	<div>
-		You currently have <%= pluralize(@user.albums.count, "album") %>
-	</div>
-
-	<div>
+	<div class="numberofalbums">
+		<h1>You currently have <%= pluralize(@user.albums.count, "album") %></h1>
 		<%= link_to "Create a new album!", new_user_album_path(@user) %>
 	</div>
 
-	<div>
+	<div class="wrapper clearfix">
+		<% @user.albums.each do |album| %>
+			<div class="albumthumb">
+				<%= link_to image_tag(!album.photos.empty? ? album.photos.first.avatar.url(:medium) : album.name), user_album_path(@user, album) %>
+				<br>
+				<%= album.name %>
+			</div>
+		<% end %>
+	</div>
+	
+
+<!-- 	<div>
 	<% if @user.albums.any? %>
 	hey
 	<% else %>
@@ -16,6 +24,4 @@
 	<% end %> 
 
 	<%= @user.albums %>
-	</div>
-
-	<%= link_to "Back", users_path %>
+	</div> -->

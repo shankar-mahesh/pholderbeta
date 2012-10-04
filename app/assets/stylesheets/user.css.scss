@@ -52,6 +52,11 @@ label {
 	font-size: 20px;
 }
 
+a {
+	text-decoration: underline;
+	color: black;
+}
+
 .submitbutton {
 	@include redbutton;
 	margin: 10px 10px 10px 0px;
@@ -86,6 +91,15 @@ label {
 	background: white;
 	margin-top: 10px;
 	margin-bottom: 10px;
+}
+
+.wrapper.clearfix:after {
+	content: ".";
+	display: block;
+	clear: both;
+	visibility: hidden;
+	line-height: 0;
+	height: 0;
 }
 
 nav {
@@ -164,6 +178,10 @@ nav ul li {
 	overflow: auto;
 }
 
+.formpage {
+	background-image: url('background.jpg');
+}
+
 .tool {
 	height: 40px;
 }
@@ -181,6 +199,23 @@ nav ul li {
 	background: #E6E6E6;
 }
 
+.numberofalbums, .numberofpictures {
+	text-align:center;
+}
+
+.albumthumb, .picthumb {
+	float: left;
+	margin: 5px;
+	border: 2px dashed black;
+}
+
+.numberofalbums h1 {
+	color: red
+}
+
+.destroypicswrapper {
+	float: left;
+}
 
 .holder img {
 	position: relative;
@@ -273,7 +308,8 @@ nav ul li {
 	margin: 0 auto;
 	border: 1px solid red;
 	position: relative;
-	bottom: 300px
+	bottom: 300px;
+	background: white;
 }
 
 .formhold {
@@ -324,11 +360,7 @@ nav ul li {
 
 
 .formholder {
-	width: 500px;
-	position: absolute;
-	bottom: 140px;
-	left: 200px;
-	margin-left: 40px;
+	float: left;
 }
 
 .redborder {

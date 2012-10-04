@@ -16,9 +16,20 @@ class AlbumsController < ApplicationController
 	end
 
 	def update
+	  @user = User.find(params[:user_id])
+	  @album = @user.albums.find(params[:id])
+	  respond_to do |format|
+		if @album.update_attributes(params[:album])
+	      format.html { redirect_to user_album_path(@user, @album), notice: 'Album successfully updated' }
+		else
+		  format.html { render 'edit' }
+		end
+	  end
 	end
 
 	def edit
+	  @user = User.find(params[:user_id])
+	  @album = @user.albums.find(params[:id])
 	end
 
 	def create
@@ -38,6 +49,7 @@ class AlbumsController < ApplicationController
 	def new
 	  @user = User.find(params[:user_id])
 	  @album = Album.new
+	  @form_page = true
 	end
 
 	def destroy

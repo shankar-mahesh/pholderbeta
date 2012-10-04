@@ -1,12 +1,21 @@
 
 		<nav class="clearfix">
-	
-			<a href="/" class="greybackground">home</a> 
+			<% if !signed_in? %>
+				<%= link_to "home", root_url %>
+			<% else %>
+				<%= link_to "my profile", current_user %>
+			<% end %>
 			<a href="">about us</a>
 			<a href="">tour</a>
 
 			<div class="rightnav">
-				<a href="#" id="signuplink">Sign Up</a>
-				<a href="#" id="loginlink">Log In</a>
+			<% if signed_in? %>
+				<%= link_to "Log out", signout_path, method: "delete", :id =>"logoutlink" %>
+			<% else %>
+				<%= link_to "Sign Up", new_user_path, :id => "signuplink" %>
+				<!-- <a href="#" id="signuplink">Sign Up</a> -->
+				<%= link_to "Log In", signin_path, :id => "loginlink" %>
+				<!-- <a href="#" id="loginlink">Log In</a> -->
+			<% end %>
 			</div>
 		</nav>

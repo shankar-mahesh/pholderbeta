@@ -1,5 +1,5 @@
-<%= form_for (@album), url: user_albums_path, :html => { :id => "uploadform", :multipart => true } do |f| %>
-<div>
+<%= form_for ([@user, @album]), :html => { :id => "uploadform", :multipart => true } do |f| %>
+<div class="formholder">
 	<%= f.label :name %>
 	<%= f.text_field :name %>
 
@@ -9,7 +9,8 @@
 
  	<br>
 
+
+
 	<%=f.submit %>
 </div>
 <% end %>
-

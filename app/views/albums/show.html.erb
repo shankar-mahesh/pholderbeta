@@ -1,10 +1,21 @@
 
 
-<% if @album.photos.any? %>
-yes  pics
-<% else %>
-no  pics
-<% end %>
+	<div class="numberofpictures">
+		<h1>This album currently has <%= pluralize(@album.photos.count, "photo") %></h1>
+		<%= link_to "Upload new pics!", new_user_album_photo_path(@user, @album) %> |
+		<%= link_to "Edit album", edit_user_album_path(@user, @album) %> |
+		<%= link_to "View all albums", user_path(@user) %> 
+	</div>
+
+	<div >
+	<% if @album.photos.any? %>
+		<% @album.photos.each do |photo| %>
+			<div class="picthumb">
+				<%= link_to image_tag(photo.avatar.url ? photo.avatar.url(:small) : @album.name), root_url %>
+			</div>
+		<% end %> 
+	<% else %>
+		There are no pics in this album
+	<% end %>
 
 
-<%= link_to "Upload new pics!", new_user_album_photo_path(@user, @album) %>

@@ -5,12 +5,15 @@ Pholder::Application.routes.draw do
     end
   end
 
-
-  root :to => "users#index"
+  resources :sessions, only: [:new, :create, :destroy]
 
   match '/about',   to: 'home#about'
   match '/help',    to: 'home#help'
   match '/contact', to: 'home#contact'
+  match '/signin',  to: 'sessions#new'
+  match '/signout', to: 'sessions#destroy', via: :delete
+
+  root :to => "users#index"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

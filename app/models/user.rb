@@ -12,4 +12,15 @@ class User < ActiveRecord::Base
   has_many :albums, :through => :album_users
   accepts_nested_attributes_for :albums
 
+  has_many :friends
+
+  before_save { |user| user.email = email.downcase }
+  before_save :create_remember_token
+
+  private
+
+    def create_remember_token
+      self.remember_token = SecureRandom.urlsafe_base64
+    end
+
 end
