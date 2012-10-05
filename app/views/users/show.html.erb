@@ -1,8 +1,26 @@
 	<% provide(:title, "Welcome, #{@user.name}!") %>
 
+	<div class="numberoffriends">
+		<% if current_user == @user %>
+			<h1>You have <%= pluralize(@user.friendships.count, "friend") %></h1>
+		<% else %>
+			<h1><%= @user.name %> has <%= pluralize(@user.friendships.count, "friend") %></h1>
+		<% end %>
+			<% @user.friendships.each do |friendship| %>
+			<%= link_to friendship.friend.name, user_path(friendship.friend) %>
+			<% end %>
+		
+	</div>
+
+
 	<div class="numberofalbums">
-		<h1>You currently have <%= pluralize(@user.albums.count, "album") %></h1>
-		<%= link_to "Create a new album!", new_user_album_path(@user) %>
+		<% if current_user == @user %>
+			<h1>You currently have <%= pluralize(@user.albums.count, "album") %></h1>
+			<%= link_to "Create a new album!", new_user_album_path(@user) %>
+		<% else %>
+			<h1><%= @user.name %> currently has <%= pluralize(@user.albums.count, "album") %></h1>
+		<% end %>
+
 	</div>
 
 	<div class="wrapper clearfix">
@@ -15,13 +33,3 @@
 		<% end %>
 	</div>
 	
-
-<!-- 	<div>
-	<% if @user.albums.any? %>
-	hey
-	<% else %>
-	boo
-	<% end %> 
-
-	<%= @user.albums %>
-	</div> -->

@@ -4,17 +4,17 @@
 				<%= link_to "home", root_url %>
 			<% else %>
 				<%= link_to "my profile", current_user %>
+				<%= link_to "edit profile", edit_user_path(current_user) %>
 			<% end %>
-			<a href="">about us</a>
-			<a href="">tour</a>
 
 			<div class="rightnav">
 			<% if signed_in? %>
-				<%= link_to "Log out", signout_path, method: "delete", :id =>"logoutlink" %>
+				<%= link_to "active users", users_path %>
+				<%= link_to "log out", signout_path, method: "delete", :id =>"logoutlink" %>
 			<% else %>
-				<%= link_to "Sign Up", new_user_path, :id => "signuplink" %>
+				<%= link_to "sign up", new_user_path, :id => "signuplink" %>
 				<!-- <a href="#" id="signuplink">Sign Up</a> -->
-				<%= link_to "Log In", signin_path, :id => "loginlink" %>
+				<%= link_to "log in", signin_path, :id => "loginlink" %>
 				<!-- <a href="#" id="loginlink">Log In</a> -->
 			<% end %>
 			</div>

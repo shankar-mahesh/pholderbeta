@@ -9,7 +9,13 @@
   <%= csrf_meta_tags %>
 </head>
 <body class="<%= @form_page ? 'formpage' : '' %>">
+
+
 	<%= render 'layouts/header' %>
+
+	<% flash.each do |key, value| %>
+		<%= content_tag(:div, value, class: "alert alert-#{key}") %>
+	<% end %>
 
 		<%= yield %>
 

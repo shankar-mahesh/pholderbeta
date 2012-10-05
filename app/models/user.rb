@@ -12,7 +12,8 @@ class User < ActiveRecord::Base
   has_many :albums, :through => :album_users
   accepts_nested_attributes_for :albums
 
-  has_many :friends
+  has_many :friendships
+  has_many :friends, :through => :friendships
 
   before_save { |user| user.email = email.downcase }
   before_save :create_remember_token
