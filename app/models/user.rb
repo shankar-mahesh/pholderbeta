@@ -12,8 +12,11 @@ class User < ActiveRecord::Base
   has_many :albums, :through => :album_users
   accepts_nested_attributes_for :albums
 
-  has_many :friendships
-  has_many :friends, :through => :friendships
+  has_many :friendships, :dependent => :destroy
+  has_many :friends, :through => :friendships, :conditions => "status = 'accepted'"
+  has_many :requested_friends, :through => :friendships, :source => :friend, :conditions => "status = 'requested'", :order => :created_at
+  has_many :pending_friends, :through => :friendships, :source => :friend, :conditions => "status = 'pending'", :order => :created_at
+
 
   before_save { |user| user.email = email.downcase }
   before_save :create_remember_token

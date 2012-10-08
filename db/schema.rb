@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121005170823) do
+ActiveRecord::Schema.define(:version => 20121008180846) do
 
   create_table "album_users", :id => false, :force => true do |t|
     t.integer  "album_id"
@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(:version => 20121005170823) do
     t.integer  "friend_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.string   "status"
   end
 
   create_table "photos", :force => true do |t|

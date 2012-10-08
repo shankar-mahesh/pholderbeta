@@ -3,7 +3,8 @@
 	<%= f.label :name %>
 	<%= f.text_field :name %>
 
-<!-- 	<%= f.check_box :friends %> -->
+	<%= f.label :friend_id %>
+	<%= f.select :friend_id, @user.friendships.map { |friendship| [friendship.friend.name, friendship.friend.id]}, {:prompt => "Pick a friend"} %>
 
 	<%= f.label :description %>
 	<%= f.text_area :description %>

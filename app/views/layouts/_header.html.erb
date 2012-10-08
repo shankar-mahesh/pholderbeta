@@ -5,6 +5,7 @@
 			<% else %>
 				<%= link_to "my profile", current_user %>
 				<%= link_to "edit profile", edit_user_path(current_user) %>
+				<%= link_to "friends", user_friends_path(current_user) %>
 			<% end %>
 
 			<div class="rightnav">

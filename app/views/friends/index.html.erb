@@ -1,0 +1,36 @@
+<h1>My Friends</h1>
+<h3>Current Friends</h3>
+
+<% unless @user.friendships.empty? %>
+<% @user.friendships.each do |friendship| %>
+<ul>
+	<li><%= link_to friendship.friend.name, user_path(friendship.friend) %></li>
+</ul>
+<% end %>
+<% end %>
+
+<h3>Friend requests</h3>
+<% unless @user.requested_friends.empty? %>
+<% @user.requested_friends.each do |requested_friend| %>
+<ul>
+	<li>
+		<%= link_to requested_friend.name, user_path(requested_friend) %>
+		<%= link_to "Cancel Request", user_friend_path(:user_id => current_user.id, :id => requested_friend), :method => :delete, :confirm => "Are you sure?" %>
+	</li>
+</ul>
+<% end %>
+<% end %>
+
+<h3>Pending requests</h3>
+<% unless @user.pending_friends.empty? %>
+<% @user.pending_friends.each do |pending_friend| %>
+<ul>
+	<li>
+		<%= link_to pending_friend.name, user_path(pending_friend) %>
+		<%= link_to "Accept", user_friend_path(:user_id => current_user.id, :id => pending_friend), :method => :put, :confirm => "Are you sure?" %>
+	</li>
+</ul>
+<% end %>
+<% end %>
+
+<%= @user.friends.count %>

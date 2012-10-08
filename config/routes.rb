@@ -1,5 +1,6 @@
 Pholder::Application.routes.draw do
   resources :users do
+    resources :friends
     resources :albums do
       resources :photos
     end
