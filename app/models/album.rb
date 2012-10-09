@@ -3,7 +3,7 @@ class Album < ActiveRecord::Base
   validates_presence_of :name
 
   has_many :album_users
-  has_many :users, :through => :album_user
+  has_many :users, :through => :album_users
   has_many :photos
 
 end

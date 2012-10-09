@@ -1,10 +1,9 @@
-<%= form_for ([@user, @album]), :html => { :id => "uploadform", :multipart => true } do |f| %>
+<%= form_for ([@user, @album]), :html => { :id => "uploadform" } do |f| %>
 <div class="formholder">
 	<%= f.label :name %>
 	<%= f.text_field :name %>
 
-	<%= f.label :friend_id %>
-	<%= f.select :friend_id, @user.friendships.map { |friendship| [friendship.friend.name, friendship.friend.id]}, {:prompt => "Pick a friend"} %>
+	<%= collection_select(:users, :friend_id, @user.friends, :id, :name_with_initial, :multiple => true ) %>
 
 	<%= f.label :description %>
 	<%= f.text_area :description %>
@@ -14,3 +13,6 @@
 	<%=f.submit %>
 </div>
 <% end %>
+
+
+	

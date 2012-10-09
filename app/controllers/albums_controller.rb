@@ -35,7 +35,7 @@ class AlbumsController < ApplicationController
 	def create
 	  @user = User.find(params[:user_id])
 	  @album = @user.albums.build(params[:album])
-	  # @album.users << @user.friendships.find_by_name(params[:friends])
+	  @album.users << @user.friends.find(params[:users][:friend_id])
 	  respond_to do |format|
 		if @user.save
 		  format.html { redirect_to user_album_path(@user, @album), notice: 'Album was successfully created.' }
