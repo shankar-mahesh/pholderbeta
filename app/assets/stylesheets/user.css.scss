@@ -93,14 +93,7 @@ a {
 	margin-bottom: 10px;
 }
 
-.wrapper.clearfix:after {
-	content: ".";
-	display: block;
-	clear: both;
-	visibility: hidden;
-	line-height: 0;
-	height: 0;
-}
+
 
 nav {
 	border-bottom: 2px solid black;

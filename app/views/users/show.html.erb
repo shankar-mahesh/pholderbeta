@@ -10,20 +10,20 @@
 <% end %>
 
 
-	<div class="numberoffriends">
-		<% if current_user == @user %>
-			<h1>You have <%= pluralize(@user.friendships.count, "friend") %></h1>
-		<% else %>
-			<h1><%= @user.name %> has <%= pluralize(@user.friendships.count, "friend") %></h1>
+	<div class="friendwrapper">
+		<%= link_to (image_tag @user.profilepic? ? @user.profilepic : "questionmark.png", :size => "150x150", :class => "miniprofilepic"), (if current_user == @user then edit_user_path(@user) else user_path(@user) end) %> 
+
+		<h3><%= user_name(@user) %> friends:</h3>
+		<% @user.friends.each do |friend| %>
+		<%= link_to (image_tag friend.profilepic? ? friend.profilepic : "questionmark.png", :size => "50x50"), user_path(friend) %>
+		<%= link_to friend.name, user_path(friend) %> <br>
 		<% end %>
-			<% @user.friendships.each do |friendship| %>
-			<%= link_to friendship.friend.name, user_path(friendship.friend) %>
-			<% end %>
-		
 	</div>
 
+<div class="albumswrapper clearfix">
 
 	<div class="numberofalbums">
+
 		<% if current_user == @user %>
 			<h1>You currently have <%= pluralize(@user.albums.count, "album") %></h1>
 			<%= link_to "Create a new album!", new_user_album_path(@user) %>
@@ -33,13 +33,15 @@
 
 	</div>
 
-	<div class="wrapper clearfix">
+	<div>
 		<% @user.albums.each do |album| %>
 			<div class="albumthumb">
-				<%= link_to image_tag(!album.photos.empty? ? album.photos.first.avatar.url(:medium) : album.name), user_album_path(@user, album) %>
+				<%= link_to image_tag(!album.photos.empty? ? album.photos.first.avatar.url(:medium) : ("questionmark.png"), :size => "150x150"), user_album_path(@user, album) %>
 				<br>
 				<%= album.name %>
 			</div>
 		<% end %>
 	</div>
+
+</div>
 	

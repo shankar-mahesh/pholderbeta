@@ -10,15 +10,11 @@ class PhotosController < ApplicationController
 	  @user = User.find(params[:user_id])
 	  @album = Album.find(params[:album_id])
       @photo = @album.photos.build(params[:photo])
-	  respond_to do |format|
-		if @album.save
-		  format.html { redirect_to user_album_path(@user, @album), notice: 'Album was successfully created.' }
-	   	  format.json { render json: @album, status: :created, location: @album}
-		else
-		  format.html { render action: "new" }
-		  format.json { render json: @album.errors, status: :unprocessable_entity }
-		end
-	  end
+      if @photo.save
+      	redirect_to user_album_path(@user, @album), notice: "Album successfully created."
+      else
+      	render 'new'
+      end
 	end
 
 	def show

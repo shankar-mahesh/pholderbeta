@@ -1,12 +1,13 @@
 class User < ActiveRecord::Base
   
   has_secure_password
-  attr_accessible :email, :name, :password, :password_confirmation
+  attr_accessible :email, :name, :password, :password_confirmation, :profilepic
   validates_presence_of :password, :on => :create
 
   validates_format_of :name, :with => /[A-Za-z]+/, :on => :create
   validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, :on => :create
   validates_length_of :password, :minimum => 5, :on => :create
+  # validates :album, :uniqueness => true
 
   has_many :album_users
   has_many :albums, :through => :album_users
@@ -17,9 +18,9 @@ class User < ActiveRecord::Base
   has_many :requested_friends, :through => :friendships, :source => :friend, :conditions => "status = 'requested'", :order => :created_at
   has_many :pending_friends, :through => :friendships, :source => :friend, :conditions => "status = 'pending'", :order => :created_at
 
+  has_attached_file :profilepic
 
   before_save { |user| user.email = email.downcase }
-  before_save :create_remember_token
 
   def name_with_initial
     "#{name}"

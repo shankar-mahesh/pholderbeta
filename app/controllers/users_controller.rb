@@ -41,13 +41,14 @@ class UsersController < ApplicationController
 	end
 
 	def update
-	  @user = current_user.update_attributes(params[:user])
-	  if @user.save
-	  	format.html { redirect_to @user, notice: 'User successfully updated.'}
-	  	format.json { render json: @user, status: :created, location: @user }
-	  else
-	  	format.html { render action: 'edit' }
-	  	format.json { render json: @user.errors, status: :unprocessable_entity }
+	  respond_to do |format|
+	    if current_user.update_attributes(params[:user])
+		  format.html { redirect_to current_user, notice: 'User successfully updated.'}
+		  format.json { render json: current_user, status: :created, location: current_user }
+		else
+		  format.html { render action: 'edit' }
+		  format.json { render json: current_user.errors, status: :unprocessable_entity }
+		end
 	  end
 	end
 

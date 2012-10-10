@@ -3,6 +3,8 @@ source 'https://rubygems.org'
 gem 'rails', '3.2.8'
 gem "bcrypt-ruby"
 gem 'paperclip'
+gem 'jquery-rails'
+gem 'fancybox-rails'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'

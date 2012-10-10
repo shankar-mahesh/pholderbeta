@@ -3,7 +3,12 @@
 	<%= f.label :name %>
 	<%= f.text_field :name %>
 
-	<%= collection_select(:users, :friend_id, @user.friends, :id, :name_with_initial, :multiple => true ) %>
+	<br>
+	<label>Hosts</label>
+	<% @user.friends.each do |friend| %>
+	<%= friend.name %>
+	<%= check_box_tag 'album[user_ids][]', friend.id, @album.users.include?(friend) %>
+	<% end %>
 
 	<%= f.label :description %>
 	<%= f.text_area :description %>
