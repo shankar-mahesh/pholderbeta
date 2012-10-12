@@ -1,10 +1,7 @@
+<%= form_for([@user, @album, @photo], :html => { :multipart => true }) do |f| %>
 
-<%= form_for(@photo, url: => album_photos_path, :html => { :multipart => true } ) do |f| %>
-
-<%= f.label :avatar %>
-<%= f.file_field :avatar %>
-
-<%= f.submit %>
-
+<%= f.file_field :avatar, multiple: true, name: "photo[avatar]" %>
 
 <% end %>
+
+

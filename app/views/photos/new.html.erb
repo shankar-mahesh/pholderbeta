@@ -2,10 +2,10 @@
 
 <%= form_for([@user, @album, @photo], :html => { :multipart => true }) do |f| %>
 
-<%= f.file_field :avatar %>
-
-<%= f.submit %>
+<%= f.file_field :avatar, multiple: true, name: "photo[avatar]" %>
 
 <% end %>
 
-
+<div id="pics">
+	<%= render :partial => "photo", :collection => @photos %>
+</div>

@@ -9,8 +9,8 @@ class User < ActiveRecord::Base
   validates_length_of :password, :minimum => 5, :on => :create
   # validates :album, :uniqueness => true
 
-  has_many :album_users
-  has_many :albums, :through => :album_users
+  has_many :ownerships
+  has_many :albums, :through => :ownerships 
   accepts_nested_attributes_for :albums
 
   has_many :friendships, :dependent => :destroy

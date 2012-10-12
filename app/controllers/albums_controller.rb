@@ -13,6 +13,7 @@ class AlbumsController < ApplicationController
 	def show
 	  @user = User.find(params[:user_id])
 	  @album = @user.albums.find(params[:id])
+	  @photos = @album.photos
 	end
 
 	def update
@@ -35,22 +36,17 @@ class AlbumsController < ApplicationController
 	def create
 	  @user = User.find(params[:user_id])
 	  @album = @user.albums.build(params[:album])
-	  @album.users << @user.friends.find(params[:album][:user_ids])
-	  respond_to do |format|
-		if @user.save
-		  format.html { redirect_to user_album_path(@user, @album), notice: 'Album was successfully created.' }
-	   	  format.json { render json: @album, status: :created, location: @album}
-		else
-		  format.html { render action: "new" }
-		  format.json { render json: @album.errors, status: :unprocessable_entity }
-		end
-	  end 
+	  @friends = @user.friends.find(params[:album][:user_ids])
+	  if @user.save
+		redirect_to user_album_path(@user, @album), notice: 'Album was successfully created.'
+	  else
+		render action: "new"
+	  end
 	end
 
 	def new
 	  @user = User.find(params[:user_id])
 	  @album = Album.new
-	  @form_page = true
 	end
 
 	def destroy
