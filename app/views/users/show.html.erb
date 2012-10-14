@@ -13,11 +13,7 @@
 	<div class="friendwrapper">
 		<%= link_to (image_tag @user.profilepic? ? @user.profilepic : "questionmark.png", :size => "150x150", :class => "miniprofilepic"), (if current_user == @user then edit_user_path(@user) else user_path(@user) end) %> 
 
-		<h3><%= user_name(@user) %> friends:</h3>
-		<% @user.friends.each do |friend| %>
-		<%= link_to (image_tag friend.profilepic? ? friend.profilepic : "questionmark.png", :size => "50x50"), user_path(friend) %>
-		<%= link_to friend.name, user_path(friend) %> <br>
-		<% end %>
+		<%= render 'profilepic' %>
 	</div>
 
 <div class="albumswrapper clearfix">

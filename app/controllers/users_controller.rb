@@ -1,11 +1,10 @@
 class UsersController < ApplicationController
 
 	def index
-	  @users = User.all
-
-	  respond_to do |format|
-	  	format.html
-	  	format.json { render json: @users }
+	  if params[:search]
+		@users = User.search(params[:search])
+	  else
+	  	@users = User.order("email").page(params[:page]).per_page(10)
 	  end
 	end
 

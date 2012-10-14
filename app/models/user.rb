@@ -26,6 +26,11 @@ class User < ActiveRecord::Base
     "#{name}"
   end
 
+  def self.search(search)
+    find(:all, :conditions => ['email LIKE ?', "%#{search}%"])
+  end
+
+
   private
 
     def create_remember_token

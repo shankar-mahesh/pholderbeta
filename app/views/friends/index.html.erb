@@ -5,11 +5,14 @@
 <% @user.friends.each do |friend| %>
 <ul>
 	<li>
+		<%= link_to (image_tag friend.profilepic? ? friend.profilepic : "questionmark.png", :size => "50x50"), user_path(friend) %>
 		<%= link_to friend.name, user_path(friend) %>
 		<%= link_to "Remove", user_friend_path(:user_id => current_user.id, :id =>friend.id), :method => :delete, :confirm => "Delete friend?" %>
 	</li>
 </ul>
 <% end %>
+<% else %>
+You currently have no friends. <%= link_to "Click here to find friends!", users_path %>
 <% end %>
 
 <h3>Friend requests</h3>
@@ -17,11 +20,14 @@
 <% @user.requested_friends.each do |requested_friend| %>
 <ul>
 	<li>
+		<%= link_to (image_tag requested_friend.profilepic? ? requested_friend.profilepic : "questionmark.png", :size => "50x50"), user_path(requested_friend) %>
 		<%= link_to requested_friend.name, user_path(requested_friend) %>
 		<%= link_to "Cancel", user_friend_path(:user_id => current_user.id, :id => requested_friend), :method => :delete, :confirm => "Are you sure?" %>
 	</li>
 </ul>
 <% end %>
+<% else %>
+You have no friend requests.
 <% end %>
 
 <h3>Pending requests</h3>
@@ -35,6 +41,6 @@
 	</li>
 </ul>
 <% end %>
+<% else %>
+You have no pending requests.
 <% end %>
-
-<%= @user.friends.count %>
