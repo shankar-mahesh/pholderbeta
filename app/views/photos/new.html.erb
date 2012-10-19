@@ -1,11 +1,17 @@
-<% provide(:title, "Upload pictures") %>
 
-<%= form_for([@user, @album, @photo], :html => { :multipart => true }) do |f| %>
 
-<%= f.file_field :avatar, multiple: true, name: "photo[avatar]" %>
-
+<%= s3_uploader_form post: user_album_photos_url, as: "photo[avatar]", id: "myS3Uploader" do %>
+  <%= file_field_tag :file, multiple: true %>
 <% end %>
+
 
 <div id="pics">
 	<%= render :partial => "photo", :collection => @photos %>
 </div>
+
+<script id="template-upload" type="text/x-tmpl">
+<div class="upload">
+  {%=o.name%}
+  <div class="progress"><div class="bar" style="width: 0%"></div></div>
+</div>
+</script>

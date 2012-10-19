@@ -11,6 +11,7 @@
  *= require_self
  *= require fancybox
  *= require_tree .
+ *= require s3_direct_upload_progress_bars
  */
 
 body {
@@ -106,5 +107,7 @@ body {
 }
 
 .usersbox {
-  border: 1px solid black
+  border: 1px solid black;
+  margin: 2px;
+  padding: 2px;
 }

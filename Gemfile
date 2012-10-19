@@ -6,6 +6,7 @@ gem 'paperclip'
 gem 'jquery-rails'
 gem 'fancybox-rails'
 gem 'will_paginate', '~> 3.0'
+gem 's3_direct_upload'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'

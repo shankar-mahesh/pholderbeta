@@ -199,7 +199,12 @@ nav ul li {
 .albumthumb, .picthumb {
 	float: left;
 	margin: 5px;
-	border: 2px dashed black;
+	border: 2px solid black;
+}
+
+.picthumb {
+	width: 150px;
+	height: 150px;
 }
 
 .numberofalbums h1 {
