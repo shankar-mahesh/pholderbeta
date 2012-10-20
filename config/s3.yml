@@ -1,0 +1,12 @@
+development:
+  bucket: pholder-edmund
+  access_key_id: AKIAJKS4ZEB7SAD3F4GA
+  secret_access_key: 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
+test:
+  bucket: pholder-edmund
+  access_key_id: AKIAJKS4ZEB7SAD3F4GA
+  secret_access_key: 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
+production:
+  bucket: pholder-edmund
+  access_key_id: AKIAJKS4ZEB7SAD3F4GA
+  secret_access_key: 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
